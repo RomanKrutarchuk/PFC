@@ -1,19 +1,27 @@
 <template>
-  <div class="home">
-    <h1>main</h1>
-    <FormComponent/>
+  <div class="main">
+    <CreateFormComponent />
+    <AuthFormComponent />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import FormComponent from '@/components/FormComponent.vue'
-import axios from "axios"
+import CreateFormComponent from "@/components/CreateFormComponent.vue";
+import AuthFormComponent from "@/components/AuthFormComponent.vue";
+import axios from "axios";
 
 export default {
-  name: 'HomeView',
+  name: "App",
   components: {
-    FormComponent
-  }
-}
+    CreateFormComponent,
+    AuthFormComponent,
+  },
+};
 </script>
+<style>
+.main {
+  width: 100%;
+  height: 100%;
+}
+</style>
