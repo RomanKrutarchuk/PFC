@@ -4,8 +4,9 @@
       <p>Create user</p>
       <input type="text" placeholder="name" v-model="form.name" />
       <input type="text" placeholder="email" v-model="form.email" />
-      <input type="text" placeholder="password" v-model="form.password" >
-      <button>Create</button>
+      <input type="text" placeholder="password" v-model="form.password" />
+      <button @click="createUser()">Create</button>
+      <button @click="changeForm()">Log in</button>
     </div>
   </div>
 </template>
@@ -22,9 +23,27 @@ export default {
       },
     };
   },
+  methods: {
+    createUser() {
+      if (this.form.name && this.form.email && this.form.password) {
+        const user = {
+          name: this.form.name,
+          email: this.form.email,
+          password: this.form.password,
+        }
+        this.$emit("createUser", user);
+        console.log("user is created");
+      } else {
+        console.log("empty fields");
+      }
+    },
+    changeForm() {
+      this.$emit("changeForm");
+      console.log("change form");
+    },
+  },
 };
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .form {
