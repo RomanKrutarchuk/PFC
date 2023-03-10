@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <router-view :authErrors="authErrors" @getThisUser="getUser($event)" />
+    <router-view :authErrors="authErrors" :user="user" @getThisUser="getUser($event)" />
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   name: "App",
   data() {
     return {
-      users: [],
+      user: null,
       comments: [],
       authErrors: null,
     };
@@ -26,6 +26,7 @@ export default {
             console.log("you have successfully authorized");
             this.authErrors = null;
             this.$router.push("/comments");
+            this.user = res.data.user
           } else if (res.data.status === "invalid passoword") {
             this.authErrors = "invalid passoword";
           }
@@ -34,34 +35,6 @@ export default {
           console.log(err);
         });
     },
-    async getPost() {
-      let response = null;
-      await axios
-        .get("http://localhost:3000/comments")
-        .then((res) => {
-          console.log("axios.get.comments response:", res.data);
-          response = res.data;
-        })
-        .catch((error) => {
-          console.log("failed to connect", error);
-        });
-      this.comments = response;
-      response = null;
-    },
-    sendComment() {
-      const req = {
-        name: this.form.name,
-        email: this.form.email,
-        text: this.form.text,
-      };
-      console.log("Axios.post.req", req);
-      axios.post("http://localhost:3000/comments", req).catch((err) => {
-        console.log(err);
-      });
-    },
-  },
-  mounted() {
-    // this.getPost();
   },
 };
 </script>
