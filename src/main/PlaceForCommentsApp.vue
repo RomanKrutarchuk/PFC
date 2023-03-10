@@ -1,28 +1,22 @@
 <template>
   <div class="main">
-    <router-view @createUser="createUser($event)"/>
+    <router-view />
   </div>
 </template>
 
 <script>
-
 import axios from "axios";
 
 export default {
   name: "App",
   data() {
     return {
-      page: "createForm",
+      users: [],
       comments: [],
     };
   },
   methods: {
-    createUser(user) {
-      console.log("user went to DB",user);
-      axios.post("http://localhost:3000/users/userCreate", user).catch((err) => {
-        console.log(err);
-      });
-    },
+
     async getPost() {
       let response = null;
       await axios
@@ -62,7 +56,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.box{
+.box {
   border: 1px solid rgb(220, 220, 220);
   box-sizing: border-box;
 }

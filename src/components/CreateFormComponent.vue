@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "CreateFormComponent",
   data() {
@@ -30,15 +31,19 @@ export default {
           name: this.form.name,
           email: this.form.email,
           password: this.form.password,
-        }
-        this.$emit("createUser", user);
-        // console.log("user is created");
+        };
+        axios
+          .post("http://localhost:3000/users/userCreate", user)
+          .then(console.log(`CreateFrom.CreateUser ${user.name}`))
+          .catch((err) => {
+            console.log(err);
+          });
       } else {
         console.log("empty fields");
       }
     },
     commeBack() {
-      this.$router.push("/")
+      this.$router.push("/");
     },
   },
 };
