@@ -2,8 +2,7 @@
   <div>
     <h1>hello you need to create a user, or login</h1>
     <h1> 111 </h1>
-    <!-- <router-link to="/create"/>
-    <router-link to="/auth"/> -->
+    <h2>no</h2>
   </div>
 </template>
 
