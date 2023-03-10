@@ -1,29 +1,15 @@
 <template>
   <div class="main">
-    <!-- <CreateFormComponent
-      v-if="this.page === 'createForm'"
-      @changeForm="this.page = 'authForm'"
-      @createUser="createUser($event)"
-    />
-    <AuthFormComponent v-if="this.page === 'authForm'" /> -->
-    <!-- <CommentsComponent v-if="this.page === 'comments'" /> -->
-    <router-view />
+    <router-view @createUser="createUser($event)"/>
   </div>
 </template>
 
 <script>
-// import CreateFormComponent from "@/components/CreateFormComponent.vue";
-// import AuthFormComponent from "@/components/AuthFormComponent.vue";
-// import CommentsComponent from "@/components/CommentsComponent.vue";
+
 import axios from "axios";
 
 export default {
   name: "App",
-  components: {
-    // CreateFormComponent,
-    // AuthFormComponent,
-    // CommentsComponent,
-  },
   data() {
     return {
       page: "createForm",
@@ -32,16 +18,11 @@ export default {
   },
   methods: {
     createUser(user) {
-      console.log(user);
-      axios.post("http://localhost:3000/createUser", user).catch((err) => {
+      console.log("user went to DB",user);
+      axios.post("http://localhost:3000/users/userCreate", user).catch((err) => {
         console.log(err);
       });
     },
-    // async axiosPost() {
-    //   axios.post("http://localhost:3000/comments").catch((err) => {
-    //     console.log(err);
-    //   });
-    // },
     async getPost() {
       let response = null;
       await axios
@@ -80,5 +61,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.box{
+  border: 1px solid rgb(220, 220, 220);
+  box-sizing: border-box;
 }
 </style>

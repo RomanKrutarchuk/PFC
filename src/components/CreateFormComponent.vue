@@ -6,7 +6,7 @@
       <input type="text" placeholder="email" v-model="form.email" />
       <input type="text" placeholder="password" v-model="form.password" />
       <button @click="createUser()">Create</button>
-      <button @click="changeForm()">Log in</button>
+      <button @click="commeBack()">Return</button>
     </div>
   </div>
 </template>
@@ -32,14 +32,13 @@ export default {
           password: this.form.password,
         }
         this.$emit("createUser", user);
-        console.log("user is created");
+        // console.log("user is created");
       } else {
         console.log("empty fields");
       }
     },
-    changeForm() {
-      this.$emit("changeForm");
-      console.log("change form");
+    commeBack() {
+      this.$router.push("/")
     },
   },
 };
