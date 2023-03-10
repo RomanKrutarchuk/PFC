@@ -1,13 +1,30 @@
 import { createRouter, createWebHistory } from "vue-router";
-import PlaceForCommentsApp from "../main/PlaceForCommentsApp.vue";
+import GetStartComponent from "@/components/GetStartComponent";
+import CreateFormComponent from "@/components/CreateFormComponent.vue";
+import AuthFormComponent from "@/components/AuthFormComponent.vue";
+import CommentsComponent from "@/components/CommentsComponent.vue";
 
 const routes = [
   {
     path: "/",
-    name: "main",
-    component: PlaceForCommentsApp,
+    name: "GetStartComponent",
+    component: GetStartComponent,
   },
-
+  {
+    path: "/create",
+    name: "CreateFormComponent",
+    component: CreateFormComponent,
+  },
+  {
+    path: "/auth",
+    name: "AuthFormComponent",
+    component: AuthFormComponent,
+  },
+  {
+    path: "/comments",
+    name: "CommentsComponent",
+    component: CommentsComponent,
+  },
   // path: '/about',
   // name: 'about',
   // route level code-splitting

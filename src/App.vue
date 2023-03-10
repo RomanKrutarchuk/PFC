@@ -1,8 +1,17 @@
 <template>
   <div class="main">
-    <router-view />
+    <PlaceForCommentsApp />
   </div>
 </template>
+
+<script>
+import PlaceForCommentsApp from "./main/PlaceForCommentsApp.vue";
+export default {
+  components: {
+    PlaceForCommentsApp,
+  },
+};
+</script>
 
 <style>
 * {

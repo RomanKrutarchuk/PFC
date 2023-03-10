@@ -1,27 +1,28 @@
 <template>
   <div class="main">
-    <CreateFormComponent
+    <!-- <CreateFormComponent
       v-if="this.page === 'createForm'"
       @changeForm="this.page = 'authForm'"
       @createUser="createUser($event)"
     />
-    <AuthFormComponent v-if="this.page === 'authForm'" />
-    <CommentsComponent v-if="this.page === 'comments'" />
+    <AuthFormComponent v-if="this.page === 'authForm'" /> -->
+    <!-- <CommentsComponent v-if="this.page === 'comments'" /> -->
+    <router-view />
   </div>
 </template>
 
 <script>
-import CreateFormComponent from "@/components/CreateFormComponent.vue";
-import AuthFormComponent from "@/components/AuthFormComponent.vue";
-import CommentsComponent from "@/components/CommentsComponent.vue";
+// import CreateFormComponent from "@/components/CreateFormComponent.vue";
+// import AuthFormComponent from "@/components/AuthFormComponent.vue";
+// import CommentsComponent from "@/components/CommentsComponent.vue";
 import axios from "axios";
 
 export default {
   name: "App",
   components: {
-    CreateFormComponent,
-    AuthFormComponent,
-    CommentsComponent,
+    // CreateFormComponent,
+    // AuthFormComponent,
+    // CommentsComponent,
   },
   data() {
     return {
