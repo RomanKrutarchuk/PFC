@@ -1,40 +1,61 @@
 <template>
-    <div>
-      <div class="form">
-        <p>Sign in</p>
-        <input type="text" placeholder="name" v-model="form.name" />
-        <input type="text" placeholder="email" v-model="form.email" />
-        <input type="text" placeholder="password" v-model="form.password" >
-        <button>Enter</button>
-      </div>
+  <div>
+    <div class="form">
+      <p>Sign in</p>
+      <input type="text" placeholder="name" v-model="userAuthFrom.name" />
+      <input type="text" placeholder="email" v-model="userAuthFrom.email" />
+      <input
+        type="text"
+        placeholder="password"
+        v-model="userAuthFrom.password"
+      />
+      <button @click="getUser()">Enter</button>
+      <p>{{ authErrors }}</p>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: "AuthFormComponent",
-    data() {
-      return {
-        form: {
-          name: "",
-          email: "",
-          password: "",
-        },
-      };
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+export default {
+  name: "AuthFormComponent",
+  props: {
+    authErrors: {
+      type: String,
+      default: null,
     },
-  };
-  </script>
-  
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
-  <style scoped>
-  .form {
-    width: 200px;
-    height: 200px;
-    border: 1px solid rgb(220, 220, 220);
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  </style>
+  },
+  data() {
+    return {
+      userAuthFrom: {
+        name: "",
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    getUser() {
+      const user = {
+        name: this.userAuthFrom.name,
+        email: this.userAuthFrom.email,
+        password: this.userAuthFrom.password,
+      };
+      this.$emit("getThisUser", user);
+    },
+  },
+};
+</script>
+
+<style scoped>
+.form {
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgb(220, 220, 220);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+</style>

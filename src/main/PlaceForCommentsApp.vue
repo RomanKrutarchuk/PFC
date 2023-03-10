@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <router-view />
+    <router-view :authErrors="authErrors" @getThisUser="getUser($event)" />
   </div>
 </template>
 
@@ -13,10 +13,27 @@ export default {
     return {
       users: [],
       comments: [],
+      authErrors: null,
     };
   },
   methods: {
-
+    async getUser(user) {
+      await axios
+        .post("http://localhost:3000/users", user)
+        .then((res) => {
+          console.log(res);
+          if (res.data.status === "authorized") {
+            console.log("you have successfully authorized");
+            this.authErrors = null;
+            this.$router.push("/comments");
+          } else if (res.data.status === "invalid passoword") {
+            this.authErrors = "invalid passoword";
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
     async getPost() {
       let response = null;
       await axios
