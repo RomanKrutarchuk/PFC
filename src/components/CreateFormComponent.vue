@@ -33,7 +33,7 @@ export default {
           password: this.form.password,
         };
         axios
-          .post("http://localhost:3000/users/userCreate", user)
+          .post("https://vercel-pfc-repository-api.vercel.app/users/userCreate", user)
           .then(console.log(`CreateFrom.CreateUser ${user.name}`))
           .catch((err) => {
             console.log(err);

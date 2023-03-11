@@ -19,7 +19,7 @@ export default {
   methods: {
     async getUser(user) {
       await axios
-        .post("http://localhost:3000/users", user)
+        .post("https://vercel-pfc-repository-api.vercel.app/users", user)
         .then((res) => {
           console.log(res);
           if (res.data.status === "authorized") {

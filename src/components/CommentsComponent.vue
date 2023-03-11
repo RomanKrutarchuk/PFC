@@ -46,7 +46,7 @@ export default {
           },
         };
         axios
-          .post("http://localhost:3000/comments/create", comment)
+          .post("https://vercel-pfc-repository-api.vercel.app/comments/create", comment)
           .then((res) => {
             console.log(res.data);
           })
@@ -60,7 +60,7 @@ export default {
     async fetchComments() {
       let response = null;
       await axios
-        .get("http://localhost:3000/comments")
+        .get("https://vercel-pfc-repository-api.vercel.app/comments")
         .then((res) => {
           console.log("succesefull fetch comments", res.data);
           response = res.data;
