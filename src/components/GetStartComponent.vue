@@ -3,16 +3,13 @@
     <div class="mainCount">
       <div class="hero">
         <h5>P.F.C</h5>
-        <div>
-          <span>if you don't care to do </span>
-          <button @click="$router.push('/auth')">log in</button>
-        </div>
       </div>
       <div class="body">
         <div class="bodyHero">
           <div>
             <h1>Welcome to Place For Comments</h1>
             <span>Come and write to your kents</span>
+            <div></div>
           </div>
         </div>
         <div class="bodyBottom">
@@ -25,12 +22,14 @@
           </div>
         </div>
       </div>
-      <div class="hero">
-        <h5>If you agree with everything</h5>
-        <div>
-          <span>try to create a user </span>
-          <button @click="$router.push('/create')">create</button>
-        </div>
+      <div class="bottom">
+        <h5>If you agree with everything create or login</h5>
+        <button class="longButton" @click="$router.push('/create')">
+          create
+        </button>
+        <button class="longButton" @click="$router.push('/auth')">
+          log in
+        </button>
       </div>
     </div>
   </div>
@@ -80,5 +79,13 @@ export default {
 }
 .main {
   background-color: rgb(191, 172, 226);
+}
+.bottom {
+  display: flex;
+  flex-direction: column;
+}
+.longButton {
+  width: 75px;
+  margin-bottom: 5px;
 }
 </style>
