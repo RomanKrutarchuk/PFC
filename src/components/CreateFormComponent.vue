@@ -58,7 +58,7 @@ export default {
     };
   },
   methods: {
-    createUser() {
+    async createUser() {
       if (
         (this.form.name !== "",
         this.form.email !== "",
@@ -72,7 +72,7 @@ export default {
             email: this.form.email,
             password: this.form.password,
           };
-          axios
+          await axios
             .post(
               "https://vercel-pfc-repository-api.vercel.app/users/userCreate",
               user
