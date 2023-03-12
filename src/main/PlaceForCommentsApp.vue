@@ -38,6 +38,7 @@ export default {
   },
 };
 </script>
+
 <style>
 .main {
   width: 100%;
@@ -46,8 +47,13 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.box {
-  border: 1px solid rgb(220, 220, 220);
-  box-sizing: border-box;
+button {
+width: max-content;
+padding: 2px;
+height: 25px;
+background-color:rgb(236, 242, 255);
+border: 1px solid rgb(101, 93, 187);
+border-radius: 2px;
+cursor: pointer;
 }
 </style>

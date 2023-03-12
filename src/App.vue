@@ -14,8 +14,10 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 * {
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 html {
   width: 100%;
