@@ -105,6 +105,7 @@ export default {
 }
 .body {
   height: 30%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

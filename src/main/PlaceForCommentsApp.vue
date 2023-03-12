@@ -56,4 +56,7 @@ border: 1px solid rgb(101, 93, 187);
 border-radius: 2px;
 cursor: pointer;
 }
+.danger{
+  border-bottom: 1px solid red;
+}
 </style>

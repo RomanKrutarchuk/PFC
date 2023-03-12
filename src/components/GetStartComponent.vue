@@ -18,7 +18,7 @@
         <div class="bodyBottom">
           <div>
             <h1>Attention</h1>
-            <span>
+            <span class="danger">
               There may be a lot of swearing, because some users are monkeys
               that have been released from the cage
             </span>
