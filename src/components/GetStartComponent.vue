@@ -12,7 +12,7 @@
         <div class="bodyHero">
           <div>
             <h1>Welcome to Place For Comments</h1>
-            <span>Tome and write to your kents</span>
+            <span>Come and write to your kents</span>
           </div>
         </div>
         <div class="bodyBottom">
