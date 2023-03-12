@@ -74,7 +74,7 @@ export default {
           };
           await axios
             .post(
-              "https://vercel-pfc-repository-api.vercel.app/users/userCreate",
+              "https://vercel-pfc-repository-api.vercel.app/users/create",
               user
             )
             .then((res) => {
