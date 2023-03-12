@@ -6,15 +6,22 @@
         <span>Remember all data</span>
       </div>
       <div class="body">
-        <input type="text" placeholder="name" v-model="form.name" />
-        <input type="text" placeholder="email" v-model="form.email" />
-        <input type="text" placeholder="password" v-model="form.password" />
-        <input
-          type="text"
-          placeholder="confirm password"
-          v-model="form.confirmPassword"
-        />
-        <button @click="createUser()">Create</button>
+        <div class="reg">
+          <input type="text" placeholder="name" v-model="form.name" />
+          <input type="text" placeholder="email" v-model="form.email" />
+          <input type="text" placeholder="password" v-model="form.password" />
+          <input
+            type="text"
+            placeholder="confirm password"
+            v-model="form.confirmPassword"
+          />
+          <button @click="createUser()">Create</button>
+        </div>
+        <div class="standarts">
+          <span class="danger" v-for="standart in registrationStandarts">
+            {{ standart.name }}
+          </span>
+        </div>
       </div>
       <div id="errors">
         <span v-if="error != ''">Attention: {{ error }}</span>
@@ -43,6 +50,11 @@ export default {
         password: "",
         confirmPassword: "",
       },
+      registrationStandarts: [
+        { name: "min length 3 charts", completed: false },
+        { name: "password must contain @#$", completed: false },
+        { name: "password must contain one uppercase chart", completed: false },
+      ],
     };
   },
   methods: {
@@ -104,11 +116,21 @@ export default {
   flex-direction: column;
 }
 .body {
-  height: 30%;
+  height: 70%;
   width: 50%;
   display: flex;
   flex-direction: column;
+}
+.reg {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   justify-content: space-around;
+}
+.standarts {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 .bottom {
   height: max-content;

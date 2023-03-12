@@ -56,7 +56,15 @@ border: 1px solid rgb(101, 93, 187);
 border-radius: 2px;
 cursor: pointer;
 }
+span{
+  padding: 0px;
+  margin: 0px;
+}
 .danger{
   border-bottom: 1px solid red;
+}
+.succesefull{
+  border-bottom: 1px solid green;
+
 }
 </style>

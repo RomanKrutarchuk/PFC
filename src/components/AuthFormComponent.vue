@@ -13,7 +13,10 @@
           placeholder="password"
           v-model="userAuthFrom.password"
         />
-        <button @click="userAuth()">log in</button>
+        <div class="waiting">
+          <button @click="userAuth()">log in</button>
+          <span v-if="waiting"> authorization in progress, please wait...</span>
+        </div>
       </div>
       <div class="bottom">
         <div>
@@ -40,6 +43,7 @@ export default {
   },
   data() {
     return {
+      waiting: false,
       userAuthFrom: {
         name: "",
         email: "",
@@ -49,6 +53,7 @@ export default {
   },
   methods: {
     userAuth() {
+      this.waiting = true;
       const user = {
         name: this.userAuthFrom.name,
         email: this.userAuthFrom.email,
@@ -89,6 +94,11 @@ export default {
 .bottom {
   height: max-content;
   display: flex;
+  justify-content: space-between;
+}
+.waiting {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 </style>
