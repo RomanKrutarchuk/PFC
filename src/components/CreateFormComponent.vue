@@ -108,7 +108,7 @@ export default {
   justify-content: space-around;
   background-color: rgb(255, 255, 255);
   padding: 5%;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .hero {
   height: max-content;

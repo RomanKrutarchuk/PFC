@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <!-- <div class="main">
     <div class="sidebar">
       <span>Profile name: {{ user.name }}</span>
     </div>
@@ -14,6 +14,30 @@
       <div class="interactionField">
         <textarea v-model="text"></textarea>
         <button class="button" @click="sendComment()">submin</button>
+      </div>
+    </div>
+  </div> -->
+  <div class="main">
+    <div v-if="user !== null" class="mainCount">
+      <div class="body">
+        <div class="comentsContainer">
+          <div class="commentsField">
+            <div class="comment" v-for="comment in comments">
+              {{ comment.author }}: {{ comment.text }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="interactionField">
+        <input type="your comment" class="interactionInput" v-model="text" />
+        <button class="interactionButton" @click="sendComment()">submin</button>
+      </div>
+    </div>
+
+    <div v-else class="mainCount">
+      <div class="userUndefiened">
+        <span>Something went wrong...</span>
+        <button @click="$router.push('/auth')">try auth</button>
       </div>
     </div>
   </div>
@@ -46,7 +70,10 @@ export default {
           },
         };
         axios
-          .post("https://vercel-pfc-repository-api.vercel.app/comments/create", comment)
+          .post(
+            "https://vercel-pfc-repository-api.vercel.app/comments/create",
+            comment
+          )
           .then((res) => {
             console.log(res.data);
           })
@@ -54,7 +81,6 @@ export default {
             console.log(err);
           });
         this.text = "";
-        this.fetchComments();
       }
     },
     async fetchComments() {
@@ -73,53 +99,76 @@ export default {
   },
   mounted() {
     this.fetchComments();
+    console.log(this.user);
   },
 };
 </script>
 <style scoped>
-.main {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-}
-.sidebar {
-  flex: 1;
-  box-sizing: border-box;
-  border-right: 1px solid rgb(220, 220, 220);
-  height: 100%;
-}
-.userIcon {
-  box-sizing: border-box;
-  border-radius: 50%;
-  background-color: rgb(158, 158, 158);
-  border: 1px solid rgb(220, 220, 220);
-  width: 50px;
-  height: 50px;
-}
-.comentsContainer {
-  flex: 5;
-  box-sizing: border-box;
-  height: 100%;
+.mainCount {
+  width: 80%;
+  height: 80%;
   display: flex;
   flex-direction: column;
 }
-.commentsField {
-  flex: 1;
-  overflow-y: scroll;
+.body {
+  height: 90%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px 8px 0px 0px;
+  padding: 2%;
 }
-.block{
+.comentsContainer {
+  max-height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  background-color: rgb(101, 93, 187);
+  border-radius: 8px 0px 0px 8px;
+}
+.commentsField {
+  width: 100%;
+  height: max-content;
   display: flex;
   flex-direction: column;
 }
 .interactionField {
+  margin-top: 5px;
+  flex: 1;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0px 0px 8px 8px;
+  display: flex;
+  align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.interactionButton{
+  height: 25px;
+  width: max-content;
+}
+.interactionInput{
+  width: 100%;
+  height: 25px;
+}
+.comment {
+  width: max-content;
+  height: max-content;
+  background-color: rgb(255, 255, 255);
+  padding: 2px;
+  margin-bottom: 5px;
+  border-radius: 0px 8px 8px 0px;
+}
+.main {
+  background-color: rgb(191, 172, 226);
+}
+.userUndefiened {
   width: 100%;
   height: 200px;
-  box-sizing: border-box;
-  border-top: 1px solid rgb(220, 220, 220);
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
+/*
 textarea {
   flex: 9;
   height: 100px;
@@ -133,5 +182,5 @@ textarea {
 .button {
   flex: 1;
   height: 100px;
-}
+} */
 </style>
