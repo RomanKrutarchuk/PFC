@@ -29,12 +29,16 @@ export default {
       await axios
         .post(URL.api_url + "/users", user)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           if (res.data.status === "authorized") {
             console.log("you have successfully authorized");
             this.authErrors = null;
             this.$router.push("/comments");
-            this.user = res.data.user;
+            const user = {
+              name: res.data.user.name,
+              email: res.data.user.email,
+            };
+            this.user = user;
           } else if (res.data.status === "invalid passoword") {
             this.authErrors = "invalid passoword";
           }

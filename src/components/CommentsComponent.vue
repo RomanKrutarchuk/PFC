@@ -29,13 +29,9 @@
 import axios from "axios";
 import URL from "../../routerConfig";
 import { io } from "socket.io-client";
-
+//socket.on(event)-server send event
+//socket.emit(event-name,data)-client send message
 const socket = io("http://localhost:3000");
-socket.on("connection_status",(data)=>{
-  console.log(data)
-})
-let msg = null;
-
 export default {
   props: {
     user: {
@@ -45,49 +41,55 @@ export default {
   },
   data() {
     return {
-      serverMessages: msg,
+      socket: null,
       text: "",
       comments: null,
     };
   },
   methods: {
-    // sendComment() {
-    //   if (this.text.length > 3) {
-    //     const comment = {
-    //       text: this.text,
-    //       author: {
-    //         name: this.user.name,
-    //         email: this.user.email,
-    //       },
-    //     };
-    //     axios
-    //       .post(api_url + "/comments/create", comment)
-    //       .then((res) => {
-    //         console.log(res.data);
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //     this.text = "";
-    //   }
-    // },
-    // async fetchComments() {
-    //   let response = null;
-    //   await axios
-    //     .get("https://vercel-pfc-repository-api.vercel.app/comments")
-    //     .then((res) => {
-    //       console.log("succesefull fetch comments", res.data);
-    //       response = res.data;
-    //     })
-    //     .catch((error) => {
-    //       console.log("failed to fetch comments", error);
-    //     });
-    //   this.comments = response;
-    // },
+    sendComment() {
+      if (this.text.length > 3) {
+        const comment = {
+          text: this.text,
+          author: {
+            name: this.user.name,
+            email: this.user.email,
+          },
+        };
+        // sendMessage(comment);
+        console.log("emit comment");
+        this.socket.emit("socket send message", comment);
+        this.text = "";
+      }
+    },
+    async fetchComments() {
+      let response = null;
+      await axios
+        .get("https://vercel-pfc-repository-api.vercel.app/comments")
+        .then((res) => {
+          console.log("succesefull fetch comments");
+          response = res.data;
+        })
+        .catch((error) => {
+          console.log("failed to fetch comments", error);
+        });
+      this.comments = response;
+    },
   },
   mounted() {
-    // this.fetchComments();
-    console.log(this.user);
+    this.fetchComments();
+    this.socket = socket;
+    socket.on("connection_status", (data) => {
+      console.log(
+        `Connection to the server via socket ${data.web_socket_connection}`
+      );
+    });
+    this.socket.on("socket send message", (data) => {
+      console.log("response received from the server", data);
+      this.comments.push(data.comment)
+    });
+    
+    // console.log(this.user.name);
   },
 };
 </script>
