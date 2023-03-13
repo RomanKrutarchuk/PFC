@@ -31,7 +31,13 @@ import URL from "../../routerConfig";
 import { io } from "socket.io-client";
 //socket.on(event)-server send event
 //socket.emit(event-name,data)-client send message
-const socket = io("https://vercel-pfc-repository-api.vercel.app",{origins: '*:*'});
+let options = {
+  rememberUpgrade: true,
+  transports: ["websocket"],
+  secure: true,
+  rejectUnauthorized: false,
+};
+const socket = io("https://vercel-pfc-repository-api.vercel.app", options);
 export default {
   props: {
     user: {
@@ -86,9 +92,9 @@ export default {
     });
     this.socket.on("socket send message", (data) => {
       console.log("response received from the server", data);
-      this.comments.push(data.comment)
+      this.comments.push(data.comment);
     });
-    
+
     // console.log(this.user.name);
   },
 };
