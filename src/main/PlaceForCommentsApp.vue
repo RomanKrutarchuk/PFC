@@ -6,6 +6,7 @@
 
 <script>
 import axios from "axios";
+import URL from "../../routerConfig";
 
 export default {
   name: "App",
@@ -18,8 +19,11 @@ export default {
   },
   methods: {
     async getUser(user) {
+      console.log(URL);
+      console.log(process.env);
+      // console.log(api_url);
       await axios
-        .post("https://vercel-pfc-repository-api.vercel.app/users", user)
+        .post(URL.api_url+"/users", user)
         .then((res) => {
           console.log(res);
           if (res.data.status === "authorized") {

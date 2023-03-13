@@ -39,6 +39,7 @@
 
 <script>
 import axios from "axios";
+import URL from "../../routerConfig.js";
 export default {
   name: "CreateFormComponent",
   data() {
@@ -73,10 +74,7 @@ export default {
             password: this.form.password,
           };
           await axios
-            .post(
-              "https://vercel-pfc-repository-api.vercel.app/users/create",
-              user
-            )
+            .post(URL.api_url+"/users/create", user)
             .then((res) => {
               console.log(`CreateFrom.CreateUser ${user.name}`);
               this.$router.push("/auth");
