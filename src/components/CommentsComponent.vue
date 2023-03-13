@@ -1,22 +1,4 @@
 <template>
-  <!-- <div class="main">
-    <div class="sidebar">
-      <span>Profile name: {{ user.name }}</span>
-    </div>
-    <div class="comentsContainer">
-      <div class="commentsField">
-        <div v-if="comments != null" class="block">
-          <span v-for="comment in comments"
-            >-{{ comment.author }}: "{{ comment.text }}"</span
-          >
-        </div>
-      </div>
-      <div class="interactionField">
-        <textarea v-model="text"></textarea>
-        <button class="button" @click="sendComment()">submin</button>
-      </div>
-    </div>
-  </div> -->
   <div class="main">
     <div v-if="user !== null" class="mainCount">
       <div class="body">
@@ -45,7 +27,15 @@
 
 <script>
 import axios from "axios";
-//first comment in my life on this page
+import URL from "../../routerConfig";
+import { io } from "socket.io-client";
+
+const socket = io("http://localhost:3000");
+socket.on("connection_status",(data)=>{
+  console.log(data)
+})
+let msg = null;
+
 export default {
   props: {
     user: {
@@ -55,50 +45,48 @@ export default {
   },
   data() {
     return {
+      serverMessages: msg,
       text: "",
       comments: null,
     };
   },
   methods: {
-    sendComment() {
-      if (this.text.length > 3) {
-        const comment = {
-          text: this.text,
-          author: {
-            name: this.user.name,
-            email: this.user.email,
-          },
-        };
-        axios
-          .post(
-            "https://vercel-pfc-repository-api.vercel.app/comments/create",
-            comment
-          )
-          .then((res) => {
-            console.log(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        this.text = "";
-      }
-    },
-    async fetchComments() {
-      let response = null;
-      await axios
-        .get("https://vercel-pfc-repository-api.vercel.app/comments")
-        .then((res) => {
-          console.log("succesefull fetch comments", res.data);
-          response = res.data;
-        })
-        .catch((error) => {
-          console.log("failed to fetch comments", error);
-        });
-      this.comments = response;
-    },
+    // sendComment() {
+    //   if (this.text.length > 3) {
+    //     const comment = {
+    //       text: this.text,
+    //       author: {
+    //         name: this.user.name,
+    //         email: this.user.email,
+    //       },
+    //     };
+    //     axios
+    //       .post(api_url + "/comments/create", comment)
+    //       .then((res) => {
+    //         console.log(res.data);
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
+    //     this.text = "";
+    //   }
+    // },
+    // async fetchComments() {
+    //   let response = null;
+    //   await axios
+    //     .get("https://vercel-pfc-repository-api.vercel.app/comments")
+    //     .then((res) => {
+    //       console.log("succesefull fetch comments", res.data);
+    //       response = res.data;
+    //     })
+    //     .catch((error) => {
+    //       console.log("failed to fetch comments", error);
+    //     });
+    //   this.comments = response;
+    // },
   },
   mounted() {
-    this.fetchComments();
+    // this.fetchComments();
     console.log(this.user);
   },
 };
@@ -140,11 +128,11 @@ export default {
   padding-left: 5%;
   padding-right: 5%;
 }
-.interactionButton{
+.interactionButton {
   height: 25px;
   width: max-content;
 }
-.interactionInput{
+.interactionInput {
   width: 100%;
   height: 25px;
 }

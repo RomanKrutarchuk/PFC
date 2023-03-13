@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import GetStartComponent from "@/components/GetStartComponent";
 import CreateFormComponent from "@/components/CreateFormComponent.vue";
 import AuthFormComponent from "@/components/AuthFormComponent.vue";
-import CommentsComponent from "@/components/CommentsComponent.vue";
+const CommentsComponent = ()=> import("@/components/CommentsComponent.vue")
 
 const routes = [
   {
@@ -32,7 +32,6 @@ const routes = [
   // which is lazy-loaded when the route is visited.
   // component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
 ];
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,

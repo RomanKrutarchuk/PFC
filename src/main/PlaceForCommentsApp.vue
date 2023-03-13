@@ -1,6 +1,10 @@
 <template>
   <div class="main">
-    <router-view :authErrors="authErrors" :user="user" @getThisUser="getUser($event)" />
+    <router-view
+      :authErrors="authErrors"
+      :user="user"
+      @getThisUser="getUser($event)"
+    />
   </div>
 </template>
 
@@ -19,18 +23,18 @@ export default {
   },
   methods: {
     async getUser(user) {
-      console.log(URL);
-      console.log(process.env);
+      // console.log(URL);
+      // console.log(process.env);
       // console.log(api_url);
       await axios
-        .post(URL.api_url+"/users", user)
+        .post(URL.api_url + "/users", user)
         .then((res) => {
           console.log(res);
           if (res.data.status === "authorized") {
             console.log("you have successfully authorized");
             this.authErrors = null;
             this.$router.push("/comments");
-            this.user = res.data.user
+            this.user = res.data.user;
           } else if (res.data.status === "invalid passoword") {
             this.authErrors = "invalid passoword";
           }
@@ -52,23 +56,22 @@ export default {
   align-items: center;
 }
 button {
-width: max-content;
-padding: 2px;
-height: 25px;
-background-color:rgb(236, 242, 255);
-border: 1px solid rgb(101, 93, 187);
-border-radius: 2px;
-cursor: pointer;
+  width: max-content;
+  padding: 2px;
+  height: 25px;
+  background-color: rgb(236, 242, 255);
+  border: 1px solid rgb(101, 93, 187);
+  border-radius: 2px;
+  cursor: pointer;
 }
-span{
+span {
   padding: 0px;
   margin: 0px;
 }
-.danger{
+.danger {
   border-bottom: 1px solid red;
 }
-.succesefull{
+.succesefull {
   border-bottom: 1px solid green;
-
 }
 </style>
