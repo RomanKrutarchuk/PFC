@@ -15,7 +15,8 @@
         />
         <div class="waiting">
           <button @click="userAuth()">log in</button>
-          <span v-if="waiting"> authorization in progress, please wait...</span>
+          <span v-if="waiting">please wait...</span>
+          <span>{{ authErrors }}</span>
         </div>
       </div>
       <div class="bottom">

@@ -41,6 +41,8 @@ export default {
             this.user = user;
           } else if (res.data.status === "invalid passoword") {
             this.authErrors = "invalid passoword";
+          } else if (res.data.status === "user_not_defiened") {
+            this.authErrors = "User not exist"
           }
         })
         .catch((err) => {
