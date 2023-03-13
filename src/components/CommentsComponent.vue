@@ -31,7 +31,12 @@ import URL from "../../routerConfig";
 import { io } from "socket.io-client";
 //socket.on(event)-server send event
 //socket.emit(event-name,data)-client send message
-const socket = io("https://vercel-pfc-repository-api.vercel.app");
+const socket = io("https://vercel-pfc-repository-api.vercel.app",{
+  withCredentials: true,
+  extraHeaders: {
+    "my-custom-header": "abcd"
+  }
+});
 export default {
   props: {
     user: {
