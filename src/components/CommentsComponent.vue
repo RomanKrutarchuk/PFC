@@ -31,7 +31,7 @@ import URL from "../../routerConfig";
 import { io } from "socket.io-client";
 //socket.on(event)-server send event
 //socket.emit(event-name,data)-client send message
-const socket = io("http://localhost:3000");
+const socket = io(URL.api_url);
 export default {
   props: {
     user: {
