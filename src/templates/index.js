@@ -1,3 +1,4 @@
 import MyButton from "./MyButton.vue";
-
-export default [MyButton];
+import MyInput from "./MyInput.vue";
+import MyReturnButton from "./MyReturnButton.vue";
+export default [MyButton, MyInput, MyReturnButton];

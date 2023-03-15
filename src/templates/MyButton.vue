@@ -22,10 +22,11 @@ button{
 }
 .my-button{
 width: 100px;
-height: 50px;
+height: 30px;
 background-color: rgb(255, 135, 135);
 color: rgb(255, 255, 255);
 font-size: large;
-margin: 0px 5px 0px 5px;
+margin: 5px;
+border-radius: 2px;
 }
 </style>

@@ -1,37 +1,32 @@
 <template>
   <div class="main">
     <div class="mainCount">
+      <my-return-button @click="$router.push('/')">Home</my-return-button>
       <div class="hero">
         <h1>Create yourself a user</h1>
+        <h4>
+          The user has no rights and no protection, from the P.F.C community,
+          good luck.
+        </h4>
         <span>Remember all data</span>
       </div>
       <div class="body">
         <div class="reg">
-          <input type="text" placeholder="name" v-model="form.name" />
-          <input type="text" placeholder="email" v-model="form.email" />
-          <input type="text" placeholder="password" v-model="form.password" />
-          <input
-            type="text"
-            placeholder="confirm password"
+          <my-input :placeholder="'name'" v-model="form.name" />
+          <my-input :placeholder="'email'" v-model="form.email" />
+          <my-input :placeholder="'password'" v-model="form.password" />
+          <my-input
+            :placeholder="'confirm password'"
             v-model="form.confirmPassword"
           />
-          <button @click="createUser()">Create</button>
-        </div>
-        <div class="standarts">
-          <span class="danger" v-for="standart in registrationStandarts">
-            {{ standart.name }}
-          </span>
+          <div class="regBottom">
+            <my-button @click="createUser()">Create</my-button>
+            <my-button @click="$router.push('/auth')">Log in</my-button>
+          </div>
         </div>
       </div>
       <div id="errors">
         <span v-if="error != ''">Attention: {{ error }}</span>
-      </div>
-      <div class="bottom">
-        <span>already have a user?</span>
-        <div>
-          <span>if you don't care to do </span>
-          <button @click="$router.push('/auth')">log in</button>
-        </div>
       </div>
     </div>
   </div>
@@ -51,11 +46,6 @@ export default {
         password: "",
         confirmPassword: "",
       },
-      registrationStandarts: [
-        { name: "min length 3 charts", completed: false },
-        { name: "password must contain @#$", completed: false },
-        { name: "password must contain one uppercase chart", completed: false },
-      ],
     };
   },
   methods: {
@@ -74,7 +64,7 @@ export default {
             password: this.form.password,
           };
           await axios
-            .post(URL.api_url+"/users/create", user)
+            .post(URL.api_url + "/users/create", user)
             .then((res) => {
               console.log(`CreateFrom.CreateUser ${user.name}`);
               this.$router.push("/auth");
@@ -96,7 +86,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .main {
-  background-color: rgb(191, 172, 226);
+  background-color: rgb(237, 237, 237);
 }
 .mainCount {
   width: 70%;
@@ -107,6 +97,7 @@ export default {
   background-color: rgb(255, 255, 255);
   padding: 5%;
   border-radius: 8px;
+  position: relative;
 }
 .hero {
   height: max-content;
@@ -123,16 +114,9 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
 }
-.standarts {
-  flex: 1;
+.regBottom {
   display: flex;
-  flex-direction: column;
-}
-.bottom {
-  height: max-content;
-  display: flex;
-  justify-content: space-between;
+  flex-direction: row;
 }
 </style>
