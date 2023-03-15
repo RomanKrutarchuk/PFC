@@ -37,7 +37,7 @@ let options = {
   secure: true,
   rejectUnauthorized: false,
 };
-let socket = io(URL.api_url,{transports: ['websocket']});
+let socket = io(URL.api_url);
 export default {
   props: {
     user: {
@@ -84,7 +84,7 @@ export default {
   },
   mounted() {
     if (this.user !== null) {
-      socket = io(URL.api_url,{transports: ['websocket']});
+      socket = io(URL.api_url);
       this.fetchComments();
       this.socket = socket;
       socket.on("connection_status", (data) => {
