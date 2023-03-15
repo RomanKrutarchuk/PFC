@@ -37,7 +37,7 @@ let options = {
   secure: true,
   rejectUnauthorized: false,
 };
-const socket = io("https://vercel-pfc-repository-api.vercel.app", options);
+let socket = io(URL.api_url);
 export default {
   props: {
     user: {
@@ -83,17 +83,24 @@ export default {
     },
   },
   mounted() {
-    this.fetchComments();
-    this.socket = socket;
-    socket.on("connection_status", (data) => {
-      console.log(
-        `Connection to the server via socket ${data.web_socket_connection}`
-      );
-    });
-    this.socket.on("socket send message", (data) => {
-      console.log("response received from the server", data);
-      this.comments.push(data.comment);
-    });
+    if (this.user !== null) {
+      socket = io(URL.api_url);
+      this.fetchComments();
+      this.socket = socket;
+      socket.on("connection_status", (data) => {
+        console.log(
+          `Connection to the server via socket ${data.web_socket_connection}`
+        );
+      });
+      this.socket.on("socket send message", (data) => {
+        console.log("response received from the server", data);
+        this.comments.push(data.comment);
+      });
+    } else {
+      socket = null;
+      console.log("Disconnected from socket");
+      console.log("We lost a user");
+    }
 
     // console.log(this.user.name);
   },
