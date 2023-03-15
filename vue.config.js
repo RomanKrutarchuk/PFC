@@ -5,8 +5,11 @@
 // });
 
 // export default defineConfig;
+import URL from "./routerConfig.js"
+
 export default {
   devServer: {
-    proxy: "http://localhost:3000",
+    proxy: URL.api_url,
   },
 };
+
