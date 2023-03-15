@@ -176,6 +176,8 @@ export default {
   border-radius: 2px;
   margin-left: 5px;
   flex-direction: column;
+  box-sizing: border-box;
+  border: 1px solid black;
 }
 .main {
   background-color: rgb(216, 217, 207);
