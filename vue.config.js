@@ -9,7 +9,7 @@ import URL from "./routerConfig.js"
 
 export default {
   devServer: {
-    proxy: URL.api_url,
+    proxy: "https://vercel-pfc-repository-api.vercel.app",
   },
 };
 
