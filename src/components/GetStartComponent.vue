@@ -1,6 +1,7 @@
 <template>
   <div class="main">
     <div class="mainCount">
+      <div class="logo">P.F.C</div>
       <!-- <div class="logo">
         <div
           v-for="color in colors"
@@ -78,6 +79,21 @@ export default {
   background-color: rgb(255, 255, 255);
   padding: 5%;
   border-radius: 8px;
+  position: relative;
+}
+.logo {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  box-sizing: border-box;
+  background-color: rgb(216, 217, 207);
+  border-radius: 2px 0px 8px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
 }
 .hero {
   height: 100%;

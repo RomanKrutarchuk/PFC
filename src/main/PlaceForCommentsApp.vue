@@ -61,23 +61,8 @@ export default {
   justify-content: center;
   align-items: center;
 }
-button {
-  width: max-content;
-  padding: 2px;
-  height: 25px;
-  background-color: rgb(236, 242, 255);
-  border: 1px solid rgb(101, 93, 187);
-  border-radius: 2px;
-  cursor: pointer;
-}
 span {
   padding: 0px;
   margin: 0px;
-}
-.danger {
-  border-bottom: 1px solid red;
-}
-.succesefull {
-  border-bottom: 1px solid green;
 }
 </style>

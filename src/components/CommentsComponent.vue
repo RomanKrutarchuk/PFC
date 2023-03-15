@@ -1,25 +1,35 @@
 <template>
   <div class="main">
     <div v-if="user !== null" class="mainCount">
+      <div class="hero">
+        <my-return-button @click="$router.push('/'), userLeave()"
+          >Home</my-return-button
+        >
+      </div>
       <div class="body">
         <div class="comentsContainer">
           <div class="commentsField">
             <div class="comment" v-for="comment in comments">
-              {{ comment.author }}: {{ comment.text }}
+              <div class="author">{{ comment.author }}:</div>
+              {{ comment.text }}
             </div>
           </div>
         </div>
       </div>
       <div class="interactionField">
-        <input type="your comment" class="interactionInput" v-model="text" />
-        <button class="interactionButton" @click="sendComment()">submin</button>
+        <my-input
+          type="your comment"
+          @keyup.enter="sendComment()"
+          v-model="text"
+        />
+        <my-button @click="sendComment()">sub</my-button>
       </div>
     </div>
 
-    <div v-else class="mainCount">
+    <div v-else class="userUndefienedBox">
       <div class="userUndefiened">
         <span>Something went wrong...</span>
-        <button @click="$router.push('/auth')">try auth</button>
+        <my-button @click="$router.push('/auth')">try auth</my-button>
       </div>
     </div>
   </div>
@@ -42,7 +52,7 @@ export default {
   props: {
     user: {
       type: Object,
-      required: true,
+      default: null,
     },
   },
   data() {
@@ -53,6 +63,14 @@ export default {
     };
   },
   methods: {
+    userLeave() {
+      socket = null;
+      console.log("Disconnected from socket");
+      console.log("User has leave");
+      this.socket = null;
+      this.text = "";
+      this.comment = null;
+    },
     sendComment() {
       if (this.text.length > 3) {
         const comment = {
@@ -71,8 +89,9 @@ export default {
     async fetchComments() {
       let response = null;
       await axios
-        .get("https://vercel-pfc-repository-api.vercel.app/comments")
+        .get(URL.api_url + "/comments")
         .then((res) => {
+          // console.log(res.data);
           console.log("succesefull fetch comments");
           response = res.data;
         })
@@ -109,14 +128,18 @@ export default {
 <style scoped>
 .mainCount {
   width: 80%;
-  height: 80%;
+  height: 90%;
   display: flex;
   flex-direction: column;
+  background-color: rgb(237, 237, 237);
+  position: relative;
+}
+.hero {
+  height: 10%;
 }
 .body {
   height: 90%;
-  background-color: rgb(255, 255, 255);
-  border-radius: 8px 8px 0px 0px;
+  border-radius: 2px 2px 0px 0px;
   padding: 2%;
 }
 .comentsContainer {
@@ -124,8 +147,9 @@ export default {
   width: 100%;
   overflow-y: scroll;
   box-sizing: border-box;
-  background-color: rgb(101, 93, 187);
-  border-radius: 8px 0px 0px 8px;
+
+  border-radius: 2px;
+  overflow-x: none;
 }
 .commentsField {
   width: 100%;
@@ -134,34 +158,36 @@ export default {
   flex-direction: column;
 }
 .interactionField {
-  margin-top: 5px;
   flex: 1;
-  background-color: rgb(255, 255, 255);
-  border-radius: 0px 0px 8px 8px;
+  background-color: rgb(237, 237, 237);
+  border-radius: 0px 0px 2px 2px;
   display: flex;
   align-items: center;
   padding-left: 5%;
   padding-right: 5%;
 }
-.interactionButton {
-  height: 25px;
-  width: max-content;
-}
-.interactionInput {
-  width: 100%;
-  height: 25px;
-}
 .comment {
   width: max-content;
   height: max-content;
+  max-width: 500px;
   background-color: rgb(255, 255, 255);
   padding: 2px;
   margin-bottom: 5px;
-  border-radius: 0px 8px 8px 0px;
+  border-radius: 2px;
+  margin-left: 5px;
+  flex-direction: column;
 }
 .main {
-  background-color: rgb(191, 172, 226);
+  background-color: rgb(216, 217, 207);
 }
+.userUndefienedBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10%;
+}
+
 .userUndefiened {
   width: 100%;
   height: 200px;
@@ -171,19 +197,9 @@ export default {
   align-items: center;
   justify-content: center;
 }
-/*
-textarea {
-  flex: 9;
-  height: 100px;
-  padding: 2px 2px;
-  box-sizing: border-box;
-  border: 1px solid rgb(220, 220, 220);
-  border-radius: 4px;
-  background-color: rgb(250, 250, 250);
-  resize: none;
+.author {
+  width: max-content;
+  font-size: large;
+  font-weight: 200;
 }
-.button {
-  flex: 1;
-  height: 100px;
-} */
 </style>
