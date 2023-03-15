@@ -47,7 +47,7 @@ let options = {
   secure: true,
   rejectUnauthorized: false,
 };
-let socket = io(URL.api_url);
+let socket = io("/");
 export default {
   props: {
     user: {
@@ -89,7 +89,7 @@ export default {
     async fetchComments() {
       let response = null;
       await axios
-        .get(URL.api_url + "/comments")
+        .get("/comments")
         .then((res) => {
           // console.log(res.data);
           console.log("succesefull fetch comments");
@@ -103,7 +103,7 @@ export default {
   },
   mounted() {
     if (this.user !== null) {
-      socket = io(URL.api_url);
+      socket = io("/");
       this.fetchComments();
       this.socket = socket;
       socket.on("connection_status", (data) => {

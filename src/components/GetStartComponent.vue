@@ -2,13 +2,6 @@
   <div class="main">
     <div class="mainCount">
       <div class="logo">P.F.C</div>
-      <!-- <div class="logo">
-        <div
-          v-for="color in colors"
-          :style="{ backgroundColor: color.color }"
-          class="color"
-        ></div>
-      </div> -->
       <div class="hero">
         <h1>Welcome to Place For Comments</h1>
         <h4>
@@ -23,10 +16,10 @@
         </span>
       </div>
       <div class="bottom">
-        <my-button class="longButton" @click="$router.push('/create')">
+        <my-button @click="$router.push('/create')">
           create
         </my-button>
-        <my-button class="longButton" @click="$router.push('/auth')">
+        <my-button @click="$router.push('/auth')">
           log in
         </my-button>
       </div>
@@ -47,7 +40,9 @@ export default {
     };
   },
 };
-// rgb(216, 217, 207)
+
+</script>
+<!-- // rgb(216, 217, 207)
 // rgb(237, 237, 237)
 // rgb(255, 135, 135)
 // rgb(226, 104, 104)
@@ -55,22 +50,8 @@ export default {
 //rgb(236, 242, 255)
 //rgb(62, 84, 172)
 //rgb(101, 93, 187)
-//rgb(191, 172, 226)
-</script>
-
+//rgb(191, 172, 226) -->
 <style scoped>
-/* .logo {
-  width: 100px;
-  height: 100px;
-  display: block;
-  flex-direction: column;
-  box-sizing: border-box;
-  border:1px solid black;
-}
-.color {
-  width: 100%;
-  height: 100%;
-} */
 .mainCount {
   width: 80%;
   height: 80%;
@@ -115,10 +96,5 @@ export default {
 }
 .main {
   background-color: rgb(226, 104, 104);
-}
-
-.longButton {
-  width: 75px;
-  margin-bottom: 5px;
 }
 </style>

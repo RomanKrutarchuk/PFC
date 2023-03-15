@@ -27,7 +27,7 @@ export default {
       // console.log(process.env);
       // console.log(api_url);
       await axios
-        .post(URL.api_url + "/users", user)
+        .post("/users", user)
         .then((res) => {
           // console.log(res);
           if (res.data.status === "authorized") {

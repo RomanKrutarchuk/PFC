@@ -64,7 +64,7 @@ export default {
             password: this.form.password,
           };
           await axios
-            .post(URL.api_url + "/users/create", user)
+            .post("/users/create", user)
             .then((res) => {
               console.log(`CreateFrom.CreateUser ${user.name}`);
               this.$router.push("/auth");
