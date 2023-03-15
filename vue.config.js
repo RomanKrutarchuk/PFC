@@ -5,11 +5,13 @@
 // });
 
 // export default defineConfig;
-import URL from "./routerConfig.js"
+import URL from "./routerConfig.js";
 
 export default {
   devServer: {
-    proxy: "https://vercel-pfc-repository-api.vercel.app",
+    proxy: URL.api_url,
+  },
+  server: {
+    proxy: URL.api_url,
   },
 };
-
