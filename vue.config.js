@@ -11,7 +11,7 @@ export default {
   devServer: {
     proxy: URL.api_url,
   },
-  server: {
+  build: {
     proxy: URL.api_url,
   },
 };
