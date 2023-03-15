@@ -1,44 +1,56 @@
 <template>
   <div class="main">
     <div class="mainCount">
+      <!-- <div class="logo">
+        <div
+          v-for="color in colors"
+          :style="{ backgroundColor: color.color }"
+          class="color"
+        ></div>
+      </div> -->
       <div class="hero">
-        <h5>P.F.C</h5>
+        <h1>Welcome to Place For Comments</h1>
+        <h4>
+          The user has no rights and no protection, from the P.F.C community,
+          good luck.
+        </h4>
       </div>
       <div class="body">
-        <div class="bodyHero">
-          <div>
-            <h1>Welcome to Place For Comments</h1>
-            <span>Come and write to your kents</span>
-            <div></div>
-          </div>
-        </div>
-        <div class="bodyBottom">
-          <div>
-            <h1>Attention</h1>
-            <span class="danger">
-              There may be a lot of swearing, because some users are monkeys
-              that have been released from the cage
-            </span>
-          </div>
-        </div>
+        <span>
+          You can log in or create user, be careful on the platform there may be
+          an aggressive monkey that mom let out of the cage, good luck.
+        </span>
       </div>
       <div class="bottom">
-        <h5>If you agree with everything create or login</h5>
-        <button class="longButton" @click="$router.push('/create')">
+        <my-button class="longButton" @click="$router.push('/create')">
           create
-        </button>
-        <button class="longButton" @click="$router.push('/auth')">
+        </my-button>
+        <my-button class="longButton" @click="$router.push('/auth')">
           log in
-        </button>
+        </my-button>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 export default {
   name: "GetStartcomponent",
+  data() {
+    return {
+      colors: [
+        { color: "rgb(216, 217, 207)" },
+        { color: "rgb(237, 237, 237)" },
+        { color: "rgb(255, 135, 135)" },
+        { color: "rgb(226, 104, 104)" },
+      ],
+    };
+  },
 };
+// rgb(216, 217, 207)
+// rgb(237, 237, 237)
+// rgb(255, 135, 135)
+// rgb(226, 104, 104)
+
 //rgb(236, 242, 255)
 //rgb(62, 84, 172)
 //rgb(101, 93, 187)
@@ -46,6 +58,18 @@ export default {
 </script>
 
 <style scoped>
+/* .logo {
+  width: 100px;
+  height: 100px;
+  display: block;
+  flex-direction: column;
+  box-sizing: border-box;
+  border:1px solid black;
+}
+.color {
+  width: 100%;
+  height: 100%;
+} */
 .mainCount {
   width: 80%;
   height: 80%;
@@ -56,34 +80,27 @@ export default {
   border-radius: 8px;
 }
 .hero {
-  height: 10%;
-  display: flex;
-  justify-content: space-between;
-}
-.body {
-  height: 90%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
-.bodyHero {
+.body {
+  height: 100%;
   display: flex;
-  align-items: center;
-  width: 100%;
-  height: 50%;
-}
-.bodyBottom {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 50%;
-}
-.main {
-  background-color: rgb(191, 172, 226);
+  flex-direction: column;
+  max-width: 30%;
 }
 .bottom {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  max-width: 30%;
+  height: 100%;
+  align-items: end;
 }
+.main {
+  background-color: rgb(226, 104, 104);
+}
+
 .longButton {
   width: 75px;
   margin-bottom: 5px;
