@@ -9,7 +9,5 @@ export default {
       ws: true,
     },
   },
-  publicPath: process.env.NODE_ENV === 'production'
-    ? "/production-sub-path/"
-    : "https://vercel-pfc-repository-api.vercel.app"
+  publicPath: "https://vercel-pfc-repository-api.vercel.app"
 }
