@@ -96,7 +96,7 @@ export default {
     },
   },
   mounted() {
-    this.io = io(URL.api_url);
+    this.io = io(URL.api_url,{transports: ["websocket", "polling"]});
     if (this.user !== null) {
       this.fetchComments();
       this.socket = this.io;
