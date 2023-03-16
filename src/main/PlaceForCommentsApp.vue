@@ -10,7 +10,7 @@
 
 <script>
 import axios from "axios";
-import URL from "../../routerConfig";
+import URL from "../../URLconfig";
 
 export default {
   name: "App",
@@ -27,7 +27,7 @@ export default {
       // console.log(process.env);
       // console.log(api_url);
       await axios
-        .post("/users", user)
+        .post(URL.api_url + "/users", user)
         .then((res) => {
           // console.log(res);
           if (res.data.status === "authorized") {
@@ -42,7 +42,7 @@ export default {
           } else if (res.data.status === "invalid passoword") {
             this.authErrors = "invalid passoword";
           } else if (res.data.status === "user_not_defiened") {
-            this.authErrors = "User not exist"
+            this.authErrors = "User not exist";
           }
         })
         .catch((err) => {

@@ -34,7 +34,7 @@
 
 <script>
 import axios from "axios";
-import URL from "../../routerConfig.js";
+import URL from "../../URLconfig";
 export default {
   name: "CreateFormComponent",
   data() {
@@ -64,7 +64,7 @@ export default {
             password: this.form.password,
           };
           await axios
-            .post("/users/create", user)
+            .post(URL.api_url+"/users/create", user)
             .then((res) => {
               console.log(`CreateFrom.CreateUser ${user.name}`);
               this.$router.push("/auth");

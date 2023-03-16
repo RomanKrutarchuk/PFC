@@ -37,17 +37,11 @@
 
 <script>
 import axios from "axios";
-import URL from "../../routerConfig";
+import URL from "../../URLconfig";
 import { io } from "socket.io-client";
 //socket.on(event)-server send event
 //socket.emit(event-name,data)-client send message
-let options = {
-  rememberUpgrade: true,
-  transports: ["websocket"],
-  secure: true,
-  rejectUnauthorized: false,
-};
-let socket = io("/");
+
 export default {
   props: {
     user: {
@@ -57,6 +51,7 @@ export default {
   },
   data() {
     return {
+      io: null,
       socket: null,
       text: "",
       comments: null,
@@ -64,8 +59,7 @@ export default {
   },
   methods: {
     userLeave() {
-      socket = null;
-      console.log("Disconnected from socket");
+      (this.io = null), console.log("Disconnected from socket");
       console.log("User has leave");
       this.socket = null;
       this.text = "";
@@ -89,7 +83,7 @@ export default {
     async fetchComments() {
       let response = null;
       await axios
-        .get("/comments")
+        .get(URL.api_url + "/comments")
         .then((res) => {
           // console.log(res.data);
           console.log("succesefull fetch comments");
@@ -102,11 +96,11 @@ export default {
     },
   },
   mounted() {
+    this.io = io(URL.api_url);
     if (this.user !== null) {
-      socket = io("/");
       this.fetchComments();
-      this.socket = socket;
-      socket.on("connection_status", (data) => {
+      this.socket = this.io;
+      this.socket.on("connection_status", (data) => {
         console.log(
           `Connection to the server via socket ${data.web_socket_connection}`
         );
@@ -116,11 +110,10 @@ export default {
         this.comments.push(data.comment);
       });
     } else {
-      socket = null;
+      this.io = null;
       console.log("Disconnected from socket");
       console.log("We lost a user");
     }
-
     // console.log(this.user.name);
   },
 };
