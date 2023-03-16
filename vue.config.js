@@ -9,5 +9,5 @@ export default {
       ws: true,
     },
   },
-  publicPath: "https://vercel-pfc-repository-api.vercel.app"
+  publicPath: "https://vercel-pfc-repository-web.vercel.app"
 }
