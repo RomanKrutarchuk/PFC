@@ -1,13 +1,11 @@
-
 import URL from "./routerConfig.js";
 // import  defineConfig from '@vue/cli-service'
 
 export default {
   devServer: {
-    proxy: {
-      target: URL.api_url,
-      ws: true,
-    },
+    proxy: URL.api_url,
   },
-  publicPath: "https://vercel-pfc-repository-web.vercel.app"
-}
+  pluginOptions: {
+    proxy: URL.api_url,
+  },
+};
