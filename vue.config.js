@@ -1,17 +1,15 @@
-// import { defineConfig } from "@vue/cli-service";
 
-// const config = defineConfig({
-//   transpileDependencies: true,
-// });
-
-// export default defineConfig;
 import URL from "./routerConfig.js";
+// import  defineConfig from '@vue/cli-service'
 
 export default {
   devServer: {
-    proxy: URL.api_url,
+    proxy: {
+      target: URL.api_url,
+      ws: true,
+    },
   },
-  build: {
-    proxy: URL.api_url,
-  },
-};
+  publicPath: process.env.NODE_ENV === 'production'
+    ? "/production-sub-path/"
+    : "https://vercel-pfc-repository-api.vercel.app"
+}
