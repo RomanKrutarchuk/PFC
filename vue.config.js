@@ -13,7 +13,7 @@ export default {
     proxy: {
       context: filter,
       options: {
-        target: "http://www.example.org",
+        target: URL.api_url,
       },
     },
   },
