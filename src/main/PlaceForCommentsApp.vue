@@ -52,7 +52,7 @@ export default {
     },
   },
   created() {
-    this.connection = new WebSocket(URL.api_url,"wss://");
+    this.connection = new WebSocket(URL.ws_api_url,"wss://");
     this.connection.onopen = (event) => {
       console.log("Successfully connected to websocket server...");
     };
