@@ -38,7 +38,7 @@
 <script>
 import axios from "axios";
 import URL from "../../URLconfig";
-import { io } from "socket.io-client";
+import  io  from "socket.io-client";
 //socket.on(event)-server send event
 //socket.emit(event-name,data)-client send message
 
