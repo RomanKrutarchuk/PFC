@@ -19,6 +19,7 @@ export default {
       user: null,
       comments: [],
       authErrors: null,
+      connection: null,
     };
   },
   methods: {
@@ -49,6 +50,12 @@ export default {
           console.log(err);
         });
     },
+  },
+  created() {
+    this.connection = new WebSocket(URL.ws_api_url);
+    this.connection.onopen = (event) => {
+      console.log("Successfully connected to websocket server...");
+    };
   },
 };
 </script>
