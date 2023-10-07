@@ -16,17 +16,15 @@
         </span>
       </div>
       <div class="bottom">
-        <my-button @click="$router.push('/create')">
-          create
-        </my-button>
-        <my-button @click="$router.push('/auth')">
-          log in
-        </my-button>
+        <my-button @click="$router.push('/create')"> create </my-button>
+        <my-button @click="$router.push('/auth')"> log in </my-button>
       </div>
     </div>
   </div>
 </template>
 <script>
+import axios from "axios";
+import { io } from "socket.io-client";
 export default {
   name: "GetStartcomponent",
   data() {
@@ -37,10 +35,22 @@ export default {
         { color: "rgb(255, 135, 135)" },
         { color: "rgb(226, 104, 104)" },
       ],
+      socket: null,
     };
   },
+  mounted() {
+    axios.get("http://46.55.120.126/").then((res) => {
+      console.log("response", res);
+    });
+    this.socket = io("http://46.55.120.126/");
+    this.socket.on("connect", () => {
+      console.log("socket: true");
+    });
+    this.socket.on("socket send message", (data) => {
+      console.log("socket data", data);
+    });
+  },
 };
-
 </script>
 <!-- // rgb(216, 217, 207)
 // rgb(237, 237, 237)

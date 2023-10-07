@@ -1,30 +1,32 @@
 import { createRouter, createWebHistory } from "vue-router";
-import GetStartComponent from "@/components/GetStartComponent";
-import CreateFormComponent from "@/components/CreateFormComponent.vue";
-import AuthFormComponent from "@/components/AuthFormComponent.vue";
-const CommentsComponent = ()=> import("@/components/CommentsComponent.vue")
+// import GetStartComponent from "@/components/GetStartComponent";
+// import CreateFormComponent from "@/components/CreateFormComponent.vue";
+// import AuthFormComponent from "@/components/AuthFormComponent.vue";
+// const CommentsComponent = () => import("@/components/CommentsComponent.vue");
+import DataSage from "@/components/DataSage.vue";
 
 const routes = [
-  {
-    path: "/",
-    name: "GetStartComponent",
-    component: GetStartComponent,
-  },
-  {
-    path: "/create",
-    name: "CreateFormComponent",
-    component: CreateFormComponent,
-  },
-  {
-    path: "/auth",
-    name: "AuthFormComponent",
-    component: AuthFormComponent,
-  },
-  {
-    path: "/comments",
-    name: "CommentsComponent",
-    component: CommentsComponent,
-  },
+  { path: "/", name: "DataSage", component: DataSage },
+  // {
+  //   path: "/",
+  //   name: "GetStartComponent",
+  //   component: GetStartComponent,
+  // },
+  // {
+  //   path: "/create",
+  //   name: "CreateFormComponent",
+  //   component: CreateFormComponent,
+  // },
+  // {
+  //   path: "/auth",
+  //   name: "AuthFormComponent",
+  //   component: AuthFormComponent,
+  // },
+  // {
+  //   path: "/comments",
+  //   name: "CommentsComponent",
+  //   component: CommentsComponent,
+  // },
   // path: '/about',
   // name: 'about',
   // route level code-splitting
