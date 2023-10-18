@@ -1,13 +1,8 @@
 {
-    "headers": [
-      {
-        "source": "/(.*)",
-        "headers": [
-          {
-            "key": "access-control-allow-origin",
-            "value": "*"
-          }
-        ]
-      }
-    ]
-  }
+  "headers": [
+    {
+      "source": "http://46.55.120.126/",
+      "headers": []
+    }
+  ]
+}
