@@ -26,7 +26,7 @@ export default {
       });
     },
     getSocketConnection() {
-      this.socket = io("http://46.55.120.126/");
+      this.socket = io("http://46.55.120.126");
       this.socket.on("connect", () => {
         this.socketConnection = true;
       });
